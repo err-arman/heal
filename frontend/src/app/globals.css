@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #eef7f4;
+  --color-brand-100: #d6ece6;
+  --color-brand-200: #aedbd0;
+  --color-brand-300: #7fc4b4;
+  --color-brand-400: #4ea694;
+  --color-brand-500: #2f8a78;
+  --color-brand-600: #1f6f61;
+  --color-brand-700: #17584e;
+  --color-brand-800: #144740;
+  --color-brand-900: #123b35;
+  --color-ink: #122824;
+  --color-paper: #f8f6f1;
+  --color-sand: #eee9df;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-bengali: var(--font-noto-bengali), "Noto Sans Bengali",
+    "Hind Siliguri", "SolaimanLipi", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+  }
+
+  html[lang="bn"] body {
+    font-family: var(--font-bengali);
+    line-height: 1.75;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-brand-500);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-200);
+    color: var(--color-ink);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
