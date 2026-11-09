@@ -1,22 +1,32 @@
 import { Module } from '@nestjs/common';
-import { createObserveModule } from '@nestjs/observe';
-import { AppController } from './app.controller.js';
-import { AppService } from './app.service.js';
-
-export const { ObserveModule, ObserveInstrument } = createObserveModule();
+import { ConfigModule } from '@nestjs/config';
+import { validateEnvironment } from './config/env.validation.js';
+import { DatabaseModule } from './database/database.module.js';
+import { HealthModule } from './modules/health/health.module.js';
+import { ReferenceDataModule } from './modules/reference-data/reference-data.module.js';
+import { DashboardModule } from './modules/dashboard/dashboard.module.js';
+import { PublicResearchModule } from './modules/public-research/public-research.module.js';
+import { PublicationModule } from './modules/publication/publication.module.js';
+import { ResearchModule } from './modules/research/research.module.js';
+import { ResourcesModule } from './modules/resources/resources.module.js';
+import { ReviewModule } from './modules/review/review.module.js';
 
 @Module({
   imports: [
-    // Distributed tracing, auto-correlated logs, request/job metrics, error
-    // telemetry, alarms, and more — out of the box. Sign up at https://observe.nestjs.com,
-    // then run `npx @nestjs/observe link` to write your key pair into .env.
-    ObserveModule.forRoot({
-      appKey: process.env.OBSERVE_APP_KEY ?? 'YOUR_APP_KEY',
-      appSecret: process.env.OBSERVE_APP_SECRET ?? 'YOUR_APP_SECRET',
-      serviceId: 'tmp-app',
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+      validate: validateEnvironment,
     }),
+    DatabaseModule,
+    HealthModule,
+    ReferenceDataModule,
+    ResourcesModule,
+    ResearchModule,
+    DashboardModule,
+    ReviewModule,
+    PublicationModule,
+    PublicResearchModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}

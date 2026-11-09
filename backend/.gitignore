@@ -1,6 +1,7 @@
 # Compiled output
 /dist
 /build
+*.tsbuildinfo
 
 # Dependencies
 /node_modules
@@ -37,6 +38,9 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 *.njsproj
 *.sln
 *.sw?
+
+# Local file storage
+/storage
 
 # Local Environment Secrets
 .env

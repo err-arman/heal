@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_USER: heal
+      POSTGRES_PASSWORD: heal
+      POSTGRES_DB: heal
+    ports:
+      - '5432:5432'
+    volumes:
+      - heal_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U heal -d heal']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  heal_pgdata:
